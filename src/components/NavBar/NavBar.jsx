@@ -14,6 +14,7 @@ const NavBar = () => {
 
     return (
         <>
+            <Sidebar isOpen={onSideBarOpen} />
             <div className="navBar">
                 <div className="icon" onClick={toggleSideBar}>
                     <TfiAlignJustify size={30} />
