@@ -1,0 +1,12 @@
+.sidebar {
+    background-color: #9966cc;
+    height: 100vh;
+    width: 250px;
+    z-index: 1000;
+    position: fixed;
+}  
+
+.sidebar div {
+    padding: 15px;
+
+}

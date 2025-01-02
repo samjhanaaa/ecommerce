@@ -14,10 +14,11 @@ const NavBar = () => {
 
     return (
         <>
-            <Sidebar isOpen={onSideBarOpen} />
+
             <div className="navBar">
                 <div className="icon" onClick={toggleSideBar}>
                     <TfiAlignJustify size={30} />
+
                 </div>
                 <div>
                     <img src={Bhesbhusa} alt="logo" className="logo" />
@@ -26,6 +27,7 @@ const NavBar = () => {
                     <input type="text" placeholder="Search" className="searchButton" />
                 </div>
             </div>
+            <Sidebar isOpen={onSideBarOpen} />
         </>
     );
 }

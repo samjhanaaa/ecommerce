@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import './sideBar.css'
+import './sideBar.css';
 
 const sideBar = ({ isOpen }) => {
 
     return (
         <>
-            <div style={{ display: isOpen ? "block" : "none" }}>
+            <div style={{ display: isOpen ? "block" : "none" }} className="sidebar">
 
                 <div>Home</div>
                 <div>Cart</div>
