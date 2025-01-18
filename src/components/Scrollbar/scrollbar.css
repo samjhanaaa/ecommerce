@@ -1,0 +1,15 @@
+
+.productCard{
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    height: 270px;
+    width: 170px;
+   
+}
+
+img{
+    height: 250px;
+    width: 150px;
+
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Scrollbar/scrollbar.css';
 import dress1 from '../../assets/images/dress1.jpg';
 import dress2 from '../../assets/images/dress2.jpg';
@@ -27,17 +27,41 @@ const products = [
 
 
 const scrollbar = () => {
+
+
+const [index, setIndex] = useState(0);
+const itemsInPage = 5;
+
+const handlePrev = () => {
+    setIndex((prev) => Math.max(prev - itemsInPage, 0));
+  };
+
+ const handleNext = () => {
+    setIndex((prev) => Math.min(prev + itemsInPage, products.length - itemsInPage));
+  };  
+
+const visibleProducts = products.slice(index, index + itemsInPage);
+
   return (
     <>
-    {products.map((product) =>
-    <div className='productCard'>
-      <img src="{product.image}" alt="Products" />
-      <div>Product</div>
+<div className="scrollbarContainer">
+    <div className="productContainer">
+  <button onClick={handlePrev} disabled={index === 0}>prev</button>
+    
+    {visibleProducts.map((product) =>
+
+    <div className='productCard' key={product.id}>
+      <img src={product.image} alt="Products" className='productImage'/>
+      <div>{product.name}</div>
     </div>
     
-  
   )}
-    </>
+  <button onClick={handleNext} disabled={index + itemsInPage >= products.length}>next</button>
+  </div>
+  </div>
+</>
+
+
   )
 }
 
