@@ -1,9 +1,9 @@
 .sidebar {
     background-color: #9966cc;
-    height: 100vh;
+    height: 100%;
     width: 250px;
     z-index: 1000;
-    position: fixed;
+    position: absolute;
 }  
 
 .sidebar div {

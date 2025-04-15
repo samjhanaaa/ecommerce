@@ -5,11 +5,16 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Hero from './pages/Home.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [onSideBarOpen, setonSideBarOpen] = useState(false);
+
+  const toggleSideBar = () => {
+    setonSideBarOpen(!onSideBarOpen);
+  };
+  
   return (
     <>
-      <NavBar />
-      <Hero />
+      <NavBar toggleSideBar={toggleSideBar}/>
+      <Hero onSideBarOpen={onSideBarOpen}/>
     </>
   )
 }

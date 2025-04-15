@@ -5,7 +5,7 @@ const sideBar = ({ isOpen }) => {
 
     return (
         <>
-            <div style={{ display: isOpen ? "block" : "none" }} className="sidebar">
+            <div className={`sidebar ${isOpen ? "open" : ""}`}>
 
                 <div>Home</div>
                 <div>Cart</div>

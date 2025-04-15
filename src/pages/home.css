@@ -1,8 +1,29 @@
 .banner {
     margin-left: 250px;
     width: 1000px;
+    height: 500px;
 }
 
-.homepage {
+.bannerDiv {
     z-index: 1001;
 }
+
+.home-container {
+    display: flex;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .home-container.shifted {
+    margin-left: 250px; 
+  }
+  
+  .sidebar {
+    width: 0;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .sidebar.open {
+    width: 250px; }
+
+  
