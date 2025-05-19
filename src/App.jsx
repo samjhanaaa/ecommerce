@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar/NavBar.jsx';
 import Hero from './pages/Home.jsx';
+import Layout from './components/Layout/Layout.jsx'
 
 function App() {
-  const [onSideBarOpen, setonSideBarOpen] = useState(false);
-
-  const toggleSideBar = () => {
-    setonSideBarOpen(!onSideBarOpen);
-  };
   
   return (
     <>
-      <NavBar toggleSideBar={toggleSideBar}/>
-      <Hero onSideBarOpen={onSideBarOpen}/>
+      <Layout>
+      <Hero />
+     </Layout>
     </>
   )
 }

@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import '../NavBar/NavBar.css'
 import Bhesbhusa from '../../assets/images/Bhesbhusa.png';
 import { TfiAlignJustify } from "react-icons/tfi";
-import Sidebar from '../SideBar/SideBar.jsx';
 
 
-const NavBar = () => {
-    const [onSideBarOpen, setonSideBarOpen] = useState(false);
 
-    const toggleSideBar = () => {
-        setonSideBarOpen(!onSideBarOpen);
-    }
-
+const NavBar = ({toggleSideBar}) => {
+    
     return (
         <>
 
@@ -27,7 +22,6 @@ const NavBar = () => {
                     <input type="text" placeholder="Search" className="searchButton" />
                 </div>
             </div>
-            <Sidebar isOpen={onSideBarOpen} />
         </>
     );
 }

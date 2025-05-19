@@ -5,4 +5,9 @@
  justify-content: center;
  align-items: center;
  display: flex;
+ flex-direction: column;
+}
+
+.footerTitle{
+    font-weight: bold;
 }

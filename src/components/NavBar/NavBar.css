@@ -1,11 +1,11 @@
 .navBar {
-    background-color: #9966cc;
+    background-color: hsl(270, 50%, 60%);
     height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    position: relative;
+    position: fixed;
 }
 
 .logo {

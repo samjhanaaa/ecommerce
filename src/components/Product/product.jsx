@@ -1,6 +1,6 @@
 import React from 'react'
 import dress from '../assets/images/dress1.jpg'
-import '../pages/product.css'
+import '../Product/product.css'
 
 const product = () => {
   return (
@@ -13,6 +13,7 @@ const product = () => {
              fugiat itaque eos repudiandae 
             unde dolorum, facilis aut voluptates, quod ea id dolor libero totam autem?</p>
         <button className='cart'>Add to cart</button>
+        <button className='wishlist'>love</button>
 
     </div>
   )
