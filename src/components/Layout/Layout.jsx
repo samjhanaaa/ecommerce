@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NavBar from "../NavBar/NavBar.jsx";
 import Sidebar from "../SideBar/SideBar.jsx";
 import Footer from "../Footer/footer.jsx";
 import './Layout.css';
+import { Outlet } from "react-router-dom";
 
 const Layout = ({ children }) => {
   const [onSideBarOpen, setonSideBarOpen] = useState(false);
@@ -18,7 +19,7 @@ const Layout = ({ children }) => {
         <Sidebar isOpen={onSideBarOpen} />
         <main className={`page-content ${onSideBarOpen ? 'shifted' : ''}`}>
           <div className="page-card">
-            {React.cloneElement(children, { onSideBarOpen })}
+            <Outlet context={{ onSideBarOpen }} />
           </div>
         </main>
       </div>

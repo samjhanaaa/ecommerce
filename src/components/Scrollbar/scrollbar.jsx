@@ -10,6 +10,7 @@ import dress7 from '../../assets/images/dress7.jpg';
 import dress8 from '../../assets/images/dress8.jpg';
 import dress9 from '../../assets/images/dress9.jpg';
 import dress10 from '../../assets/images/dress10.jpg';
+import {Link} from 'react-router-dom';
 
 
 const products = [
@@ -51,8 +52,10 @@ const visibleProducts = products.slice(index, index + itemsInPage);
     {visibleProducts.map((product) =>
 
     <div className='productCard' key={product.id}>
+      <Link to={`/product/{product.id}`}>
       <img src={product.image} alt="Products" className='productImage'/>
       <div>{product.name}</div>
+      </Link>
     </div>
     
   )}

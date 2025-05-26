@@ -1,8 +1,10 @@
 import React from 'react'
-import dress from '../assets/images/dress1.jpg'
+import dress from '../../assets/images/dress1.jpg'
 import '../Product/product.css'
+import { useParams } from 'react-router-dom'
 
-const product = () => {
+const Product = () => {
+  const { id } = useParams();
   return (
     <div className='maindiv'>
         <h1 className='title'>Products</h1>
@@ -19,4 +21,4 @@ const product = () => {
   )
 }
 
-export default product
+export default Product
