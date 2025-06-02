@@ -1,0 +1,36 @@
+
+
+.main-cart {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 6px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item div {
+  text-align: center;
+  font-size: 16px;
+}
+
+.cart-item img {
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4px;
+}
+
+
