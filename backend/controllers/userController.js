@@ -1,52 +1,48 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User'); // Make sure this path is correct
+const User = require('../models/userModel'); // make sure path matches your project
 const jwt = require('jsonwebtoken');
 
-// Helper function to create JWT token
+// Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-// @desc    Register new user (customer or business)
+// @desc    Register a new user
 // @route   POST /api/users/register
 // @access  Public
-router.post('/register', async (req, res) => {
-  console.log('Received register request:', req.body);
+const registerUser = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   try {
-    // Ensure role is valid
-    if (!['customer', 'business'].includes(role)) {
-      return res.status(400).json({ message: 'Invalid role' });
-    }
-
-    // Check if user exists
+    // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    //Create new user
-    const user = await User.create({ name, email, password, role });
+    // Create new user
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role // accepts 'customer' or 'business'
+    });
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user._id),
+      token: generateToken(user._id)
     });
   } catch (error) {
-    console.error('Register error:', error);
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Server error' });
   }
-});
+};
 
 // @desc    Login user
 // @route   POST /api/users/login
 // @access  Public
-router.post('/login', async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -57,16 +53,15 @@ router.post('/login', async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role, //  Include role in login response
-        token: generateToken(user._id),
+        role: user.role,
+        token: generateToken(user._id)
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Server error' });
   }
-});
+};
 
-module.exports = router;
+module.exports = { registerUser, loginUser };

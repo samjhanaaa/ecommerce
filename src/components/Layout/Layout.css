@@ -1,8 +1,0 @@
-.layout-body {
-  display: flex;
-  padding-top: 100px; 
-}
-
-.page-content {
-  flex-grow: 1;
-  padding-top: 20px; }
