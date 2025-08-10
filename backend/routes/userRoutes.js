@@ -1,33 +1,28 @@
+// backend/routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // Make sure this path is correct
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-// Helper function to create JWT token
+// Helper to generate token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-// @desc    Register new user (customer or business)
-// @route   POST /api/users/register
-// @access  Public
+// @route POST /api/users/register
 router.post('/register', async (req, res) => {
-  console.log('Received register request:', req.body);
   const { name, email, password, role } = req.body;
 
   try {
-    // Ensure role is valid
     if (!['customer', 'business'].includes(role)) {
       return res.status(400).json({ message: 'Invalid role' });
     }
 
-    // Check if user exists
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    //Create new user
     const user = await User.create({ name, email, password, role });
 
     res.status(201).json({
@@ -43,9 +38,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// @desc    Login user
-// @route   POST /api/users/login
-// @access  Public
+// @route POST /api/users/login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -57,7 +50,7 @@ router.post('/login', async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role, //  Include role in login response
+        role: user.role,
         token: generateToken(user._id),
       });
     } else {
