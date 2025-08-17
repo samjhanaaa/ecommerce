@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
-const { protect } = require('../middleware/authMiddleware'); // import auth middleware
+const { protect } = require('../middleware/authMiddleware');
 
 // @desc    Get cart for logged in user
 // @route   GET /api/cart
@@ -20,7 +20,7 @@ router.get('/', protect, async (req, res) => {
   }
 });
 
-// @desc    Add or update product in logged-in user's cart
+// @desc    Add or update product in cart
 // @route   POST /api/cart
 // @access  Private
 router.post('/', protect, async (req, res) => {
@@ -52,7 +52,7 @@ router.post('/', protect, async (req, res) => {
   }
 });
 
-// @desc    Remove item from logged-in user's cart
+// @desc    Remove item from cart
 // @route   DELETE /api/cart/:productId
 // @access  Private
 router.delete('/:productId', protect, async (req, res) => {

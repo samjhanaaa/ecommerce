@@ -26,11 +26,6 @@ app.use(express.json());
 // Make uploads folder publicly accessible for images
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
-// Health check route
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
-
 // API routes
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
@@ -60,8 +55,21 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
 });
 
 // =====================
+// Serve React frontend
+// =====================
+const __dirname1 = path.resolve(); // for ESM/CJS compatibility
 
+// Serve static files from client/dist
+app.use(express.static(path.join(__dirname1, '..', 'client', 'dist')));
+
+// Any non-API route → serve React app
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.resolve(__dirname1, '..', 'client', 'dist', 'index.html'));
+});
+
+// =====================
 // Error handling middleware
+// =====================
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
   res.status(500).json({
@@ -72,5 +80,5 @@ app.use((err, req, res, next) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
