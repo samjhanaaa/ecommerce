@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
 // @access  Public (for now)
 router.post('/', async (req, res) => {
   try {
-    const { name, description, price, countInStock, imageUrl } = req.body;
+    const { name, description, price, countInStock, imageUrl, category, subcategory } = req.body;
 
     const product = new Product({
       name,
@@ -45,6 +45,8 @@ router.post('/', async (req, res) => {
       price,
       countInStock,
       imageUrl,
+      category,     
+      subcategory,  
     });
 
     const createdProduct = await product.save();
@@ -60,7 +62,7 @@ router.post('/', async (req, res) => {
 // @access  Public (later: admin only)
 router.put('/:id', async (req, res) => {
   try {
-    const { name, description, price, countInStock, imageUrl } = req.body;
+    const { name, description, price, countInStock, imageUrl, category, subcategory } = req.body;
 
     const product = await Product.findById(req.params.id);
 
@@ -70,6 +72,8 @@ router.put('/:id', async (req, res) => {
       product.price = price || product.price;
       product.countInStock = countInStock || product.countInStock;
       product.imageUrl = imageUrl || product.imageUrl;
+      product.category = category || product.category;       
+      product.subcategory = subcategory || product.subcategory; 
 
       const updatedProduct = await product.save();
       res.json(updatedProduct);
